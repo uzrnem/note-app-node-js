@@ -1,4 +1,4 @@
-#docker build -t note_app_node .
+#docker build -f docker/Dockerfile -t note_app_node:1.0.0 .
 
 FROM node:16-alpine3.14
 

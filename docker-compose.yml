@@ -7,7 +7,7 @@ services:
     container_name: note_app_node
     working_dir: /app
     environment:
-      EXP_CONFIG_DATABASE_NAME: node_app
+      EXP_CONFIG_DATABASE_NAME: note_app
       EXP_CONFIG_DATABASE_HOST: mongodb
       EXP_CONFIG_DATABASE_PORT: 27017
       EXP_CONFIG_SECRET_KEY: bhagyesh
@@ -20,7 +20,7 @@ services:
       - "9052:9052"
     expose:
       - "9052"
-    command: tail -f /dev/null
+    command: sh -c "npm install && npm run start"
     networks:
       - database_mongo
 
