@@ -1,0 +1,29 @@
+#docker-compose up -d
+version: '3.7'
+
+services:
+  note_app_node:
+    image: node:16-alpine3.14
+    container_name: note_app_node
+    working_dir: /app
+    environment:
+      EXP_CONFIG_DATABASE_NAME: node_app
+      EXP_CONFIG_DATABASE_HOST: mongodb
+      EXP_CONFIG_DATABASE_PORT: 27017
+      EXP_CONFIG_SECRET_KEY: bhagyesh
+      EXP_CONFIG_EXPIRY_TIME: 3600
+      EXP_CONFIG_PROJECT_PORT: 9052
+    volumes:
+      - $HOME/uzrnem/note-app-node-js:/app
+      - $HOME/uzrnem/note-app-node-js/docker/config.docker.js:/app/env.js
+    ports:
+      - "9052:9052"
+    expose:
+      - "9052"
+    command: tail -f /dev/null
+    networks:
+      - database_mongo
+
+networks:
+  database_mongo:
+    external: true
